@@ -13,6 +13,10 @@ public class Velero extends Embarcacion{
 
     @Override
     public double precioAlquiler() {
-        return 0;
+        if(esGrande()==true){
+            return precioBase + adicional;
+        }else {
+            return  precioBase;
+        }
     }
 }

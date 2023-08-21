@@ -12,7 +12,7 @@ public class Main {
             System.out.println("1. Ingresar datos del Capitan");
             System.out.println("2. Ingresar datos del Barco");
             System.out.println("3. Mostrar datos");
-            System.out.println("4. Desea comprar el yate");
+            System.out.println("4. Venta y alquiler");
             System.out.println("5. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();

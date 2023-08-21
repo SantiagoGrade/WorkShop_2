@@ -20,6 +20,10 @@ public class Yate extends Embarcacion{
     }
     @Override
     public double precioAlquiler() {
-        return 0;
+        if(esLujo()==true){
+            return precioBase + adicional;
+        }else {
+            return  precioBase;
+        }
     }
 }
