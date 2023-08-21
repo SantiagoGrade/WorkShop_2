@@ -3,8 +3,8 @@ package Alquiler_Embarcaciones;
 public class Yate extends Embarcacion{
     protected int camarotes;
 
-    public Yate (Capitan capitan,double precioBase,double adicional, int fechaFabricacion, double eslora, int camarotes){
-        super(capitan,precioBase,adicional,fechaFabricacion,eslora);
+    public Yate (Capitan capitan,double precioBase, int fechaFabricacion, double eslora, int camarotes){
+        super(capitan,precioBase,fechaFabricacion,eslora);
         this.camarotes = camarotes;
     }
     public String comprar(){
@@ -18,12 +18,14 @@ public class Yate extends Embarcacion{
     public boolean esLujo(){
        return camarotes > 7;
     }
+
+
     @Override
     public double precioAlquiler() {
-        if(esLujo()==true){
-            return precioBase + adicional;
-        }else {
-            return  precioBase;
+        double monto = precioBase;
+        if (fechaFabricacion > 2020){
+            monto += 20000;
         }
+        return monto;
     }
 }

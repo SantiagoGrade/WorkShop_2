@@ -38,8 +38,6 @@ public class Main {
 
                     System.out.print("Ingrese precio base del Barco: ");
                     double precioBase = scanner.nextDouble();
-                    System.out.print("Ingrese valor adicional: ");
-                    double valorAdicional = scanner.nextDouble();
                     System.out.print("Ingrese año de fabricación: ");
                     int anioFabricacion = scanner.nextInt();
                     System.out.print("Ingrese eslora del Barco: ");
@@ -48,12 +46,12 @@ public class Main {
                     if (opcionBarco == 1) {
                         System.out.print("Ingrese cantidad de camarotes del Yate: ");
                         int camarotes = scanner.nextInt();
-                        embarcacion = new Yate(capitan, precioBase, valorAdicional, anioFabricacion, eslora, camarotes);
+                        embarcacion = new Yate(capitan, precioBase, anioFabricacion, eslora, camarotes);
                         System.out.println("Datos del Yate ingresados.");
                     } else if (opcionBarco == 2) {
                         System.out.print("Ingrese cantidad de mástiles del Velero: ");
                         int mastiles = scanner.nextInt();
-                        embarcacion = new Velero(capitan, precioBase, valorAdicional, anioFabricacion, eslora, mastiles);
+                        embarcacion = new Velero(capitan, precioBase, anioFabricacion, eslora, mastiles);
                         System.out.println("Datos del Velero ingresados.");
                     }
                     break;
@@ -75,18 +73,14 @@ public class Main {
                         Yate yate = (Yate) embarcacion;
                         System.out.println("Datos del Yate:");
                         System.out.println("Precio Base: $" + yate.precioBase);
-                        System.out.println("Valor Adicional: $" + yate.adicional);
                         System.out.println("Año de Fabricación: " + yate.fechaFabricacion);
                         System.out.println("Eslora: " + yate.eslora);
                         System.out.println("Camarotes: " + yate.camarotes);
-                        String lujo = yate.esLujo() ? "Sí" : "No";
-                        System.out.println("¿Es de lujo? " + lujo);
 
                     } else if (opcionMostrar == 3 && embarcacion instanceof Velero) {
                         Velero velero = (Velero) embarcacion;
                         System.out.println("Datos del Velero:");
                         System.out.println("Precio Base: $" + velero.precioBase);
-                        System.out.println("Valor Adicional: $" + velero.adicional);
                         System.out.println("Año de Fabricación: " + velero.fechaFabricacion);
                         System.out.println("Eslora: " + velero.eslora);
                         System.out.println("Mástiles: " + velero.mastiles);
@@ -98,25 +92,37 @@ public class Main {
                     break;
 
                 case 4:
-                    if (embarcacion instanceof Yate) {
-                        Yate yate = (Yate) embarcacion;
-                        System.out.println("Seleccione una opción para el yate:");
+                    System.out.println("Seleccione el tipo de embarcación:");
+                    System.out.println("1. Yate");
+                    System.out.println("2. Velero");
+                    System.out.print("Seleccione una opción: ");
+                    int opcionEmbarcacion = scanner.nextInt();
+
+                    if (opcionEmbarcacion == 1) {
+                        System.out.println("Qué desea hacer con el Yate:");
                         System.out.println("1. Alquilar");
                         System.out.println("2. Comprar");
                         System.out.print("Seleccione una opción: ");
-                        int opcionYate = scanner.nextInt();
+                        int opcionAccion = scanner.nextInt();
 
-                        if (opcionYate == 1) {
-                            double montoAlquiler = yate.precioAlquiler();
+                        if (opcionAccion == 1) {
+                            double montoAlquiler = embarcacion.precioAlquiler();
                             System.out.println("El monto del alquiler es: $" + montoAlquiler);
-                        } else if (opcionYate == 2) {
-                            String compraYate = yate.comprar();
-                            System.out.println(compraYate);
+                        } else if (opcionAccion == 2) {
+                            if (embarcacion instanceof Yate) {
+                                String compraYate = ((Yate) embarcacion).comprar();
+                                System.out.println(compraYate);
+                            } else {
+                                System.out.println("Opción inválida para la acción.");
+                            }
                         } else {
-                            System.out.println("Opción inválida para el yate.");
+                            System.out.println("Opción inválida para la acción.");
                         }
+                    } else if (opcionEmbarcacion == 2 && embarcacion instanceof Velero) {
+                        double montoAlquiler = embarcacion.precioAlquier();
+                        System.out.println("El monto del alquiler es: $" + montoAlquiler);
                     } else {
-                        System.out.println("No ha ingresado un yate.");
+                        System.out.println("Opción inválida para la embarcación.");
                     }
                     break;
 

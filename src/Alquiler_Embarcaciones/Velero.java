@@ -2,8 +2,8 @@ package Alquiler_Embarcaciones;
 
 public class Velero extends Embarcacion{
     protected int mastiles;
-    public Velero(Capitan capitan, double precioBase, double valorAdicional, int anioFabricacion, double eslora, int mastiles) {
-        super(capitan, precioBase, valorAdicional, anioFabricacion, eslora);
+    public Velero(Capitan capitan, double precioBase, int anioFabricacion, double eslora, int mastiles) {
+        super(capitan, precioBase, anioFabricacion, eslora);
         this.mastiles = mastiles;
     }
 
@@ -13,10 +13,10 @@ public class Velero extends Embarcacion{
 
     @Override
     public double precioAlquiler() {
-        if(esGrande()==true){
-            return precioBase + adicional;
-        }else {
-            return  precioBase;
+        double monto = precioBase;
+        if (fechaFabricacion > 2020){
+            monto += 20000;
         }
+        return monto;
     }
 }
